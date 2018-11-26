@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>ant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="MinHow,MinHow's Blog">
+  
+  <meta name="description" content="#java并发编程（一）基础篇##目录 ###一、序言 ###二、Java多线程的创建 ###三、多线程的生命状态 ###四、Java多线程的常用方法和实例 ###五、Java中线程的优先级##一、序言进程（process）：是并发执行的程序在执行过程中分配和管理资源的基本单位，是一个动态概念，竟争计算机系统资源的基本单位。每一个进程都有一个自己的地址空间，即进程空间或（虚空间）。进程至少有 5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ant">
+<meta property="og:url" content="http://yoursite.com/2018/11/26/com_Fl_Threat/index.html">
+<meta property="og:site_name" content="ant">
+<meta property="og:description" content="#java并发编程（一）基础篇##目录 ###一、序言 ###二、Java多线程的创建 ###三、多线程的生命状态 ###四、Java多线程的常用方法和实例 ###五、Java中线程的优先级##一、序言进程（process）：是并发执行的程序在执行过程中分配和管理资源的基本单位，是一个动态概念，竟争计算机系统资源的基本单位。每一个进程都有一个自己的地址空间，即进程空间或（虚空间）。进程至少有 5">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.cnblogs.com/happy-coder/p/6587092.html">
+<meta property="og:updated_time" content="2018-11-26T11:38:03.443Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ant">
+<meta name="twitter:description" content="#java并发编程（一）基础篇##目录 ###一、序言 ###二、Java多线程的创建 ###三、多线程的生命状态 ###四、Java多线程的常用方法和实例 ###五、Java中线程的优先级##一、序言进程（process）：是并发执行的程序在执行过程中分配和管理资源的基本单位，是一个动态概念，竟争计算机系统资源的基本单位。每一个进程都有一个自己的地址空间，即进程空间或（虚空间）。进程至少有 5">
+<meta name="twitter:image" content="http://www.cnblogs.com/happy-coder/p/6587092.html">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">MinHow&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        MinHow&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个专注 WEB 开发的技术博客
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="MinHow" target="_blank" href="//minhow.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/wongminho">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/WongMinHo">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/huangminhow">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-com_Fl_Threat" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="java并发编程（一）基础篇"><a href="#java并发编程（一）基础篇" class="headerlink" title="#java并发编程（一）基础篇"></a>#java并发编程（一）基础篇</h2><p>##目录</p>
+<p>###一、序言</p>
+<p>###二、Java多线程的创建</p>
+<p>###三、多线程的生命状态</p>
+<p>###四、Java多线程的常用方法和实例</p>
+<h2 id="五、Java中线程的优先级"><a href="#五、Java中线程的优先级" class="headerlink" title="###五、Java中线程的优先级"></a>###五、Java中线程的优先级</h2><p>##一、序言<br><strong>进程（process）：</strong>是并发执行的程序在执行过程中分配和管理资源的基本单位，是一个动态概念，竟争计算机系统资源的基本单位。每一个进程都有一个自己的地址空间，即进程空间或（虚空间）。进程至少有 5 种基本状态，它们是：初始态，执行态，等待状态，就绪状态，终止状态。</p>
+<p><strong>线程（Thread）：</strong>线程，是进程的一部分，一个没有线程的进程可以被看作是单线程的。线程有时又被称为轻权进程或轻量级进程，也是 CPU 调度的一个基本单位。</p>
+<p><strong>线程和进程的联系</strong></p>
+<h2 id="一个进程可以包含多个线程，每个线程在一个进程中共同协作完成一个任务，一个进程中如果一个线程都不包含我们可以认为这个进程是单线程，因此这就很容易理解为什么说进程是c计算机系统分配资源的基本单位，因为计算机在执行某一个任务的时候就会把一整块的资源分派给进程。然后由进程里面的众多的线程完成这个资源的调度和使用。因此说线程是cpu调度和处理的基本单位。这就会引发一个问题，在同一个进程中的线程就会因为共同使用一块的资源，就会发生争抢的情况。这时就要有足够优质的控制机制来进行控制程序中线程的处理。"><a href="#一个进程可以包含多个线程，每个线程在一个进程中共同协作完成一个任务，一个进程中如果一个线程都不包含我们可以认为这个进程是单线程，因此这就很容易理解为什么说进程是c计算机系统分配资源的基本单位，因为计算机在执行某一个任务的时候就会把一整块的资源分派给进程。然后由进程里面的众多的线程完成这个资源的调度和使用。因此说线程是cpu调度和处理的基本单位。这就会引发一个问题，在同一个进程中的线程就会因为共同使用一块的资源，就会发生争抢的情况。这时就要有足够优质的控制机制来进行控制程序中线程的处理。" class="headerlink" title="一个进程可以包含多个线程，每个线程在一个进程中共同协作完成一个任务，一个进程中如果一个线程都不包含我们可以认为这个进程是单线程，因此这就很容易理解为什么说进程是c计算机系统分配资源的基本单位，因为计算机在执行某一个任务的时候就会把一整块的资源分派给进程。然后由进程里面的众多的线程完成这个资源的调度和使用。因此说线程是cpu调度和处理的基本单位。这就会引发一个问题，在同一个进程中的线程就会因为共同使用一块的资源，就会发生争抢的情况。这时就要有足够优质的控制机制来进行控制程序中线程的处理。"></a>一个进程可以包含多个线程，每个线程在一个进程中共同协作完成一个任务，一个进程中如果一个线程都不包含我们可以认为这个进程是单线程，因此这就很容易理解为什么说进程是c计算机系统分配资源的基本单位，因为计算机在执行某一个任务的时候就会把一整块的资源分派给进程。然后由进程里面的众多的线程完成这个资源的调度和使用。因此说线程是cpu调度和处理的基本单位。这就会引发一个问题，在同一个进程中的线程就会因为共同使用一块的资源，就会发生争抢的情况。这时就要有足够优质的控制机制来进行控制程序中线程的处理。</h2><p>##二、多线程的创建</p>
+<ol>
+<li>继承Thread类</li>
+<li>实现runnable接口</li>
+</ol>
+<p><strong>继承Thread类</strong></p>
+<pre><code>package com.Fl.Thread
+public class MyThread extends Thread{
+//重写run方法
+public void run(){
+//获得父类中的run方法的内容
+super.run();
+System.out.println(&quot;MyThread&quot;);
+   }
+}
+</code></pre><p><strong>实现runnable接口</strong></p>
+<p>注：如果想要创建的线程已经有自己的父类了，那么我们就不能再继承Thread类进行创建线程，因为Java只支持单继承。此时就要用实现runnable接口的方法来实现线程的创建。</p>
+<pre><code>package com.Fl.Thread
+public class MyRunnable implement Runnable{
+//重写run方法   
+System.out.println(&quot;MyThread&quot;);
+}
+</code></pre><p>那么如何使用MyThread.java对象呢？</p>
+<p>在Thread.java这个构造方法中只有Thread(Runnale r)和Thread(Runnale r，String name )可以传递Runnable接口，说明构造函数支持传入一个接口对象。</p>
+<pre><code>public class Run{
+public static void main(String[] arge){
+   Runnable runnable =new MyRunnable();
+   Thread thread=new Thread(runnable);
+   thread.start();
+   }
+}
+</code></pre><p>构造函数Thread(Runnale r)不仅支持传入一个接口对象，还可以传入一个Thread对象。</p>
+<hr>
+<p>##三、多线程的生命状态<br>注：在我们引入多线程给我们带来方便的同时，也引入了弊端和问题——线程的安全性。接下来就进行图解线程的安全性和线程状态等问题。<br><img src="http://www.cnblogs.com/happy-coder/p/6587092.html" alt=""><br>1.新建状态(new) : 线程对象被创建，此时线程就进入到新建状态。当我们new一个线程对象的时候，此时就是new状态。<br>2.就绪态(runnable):当线程对象被创建出来之后，我们就会调用它的start方法，此时，线程就会进入到就绪状态，此时的线程对象随时准备被CPU调用执行。<br>3.运行态(running):当线程对象在就绪状态的时候，它获得CPU的时间片，此时线程对象就进入到了运行状态，注意线程只能从就绪状态进入到运行状态。<br>4.阻塞状态(blocked):阻塞状态分为三种:<br>——等待阻塞:当处在运行状态的线程需要等待其他资源的时候就会调用wait()方法，进入阻塞状态。<br>——同步阻塞:线程在获取synchronized锁时失败，此时就会进入到同步阻塞状态。<br>——其他阻塞:当运行态的线程调用了sleep()或者jion()方法时，此时的线程也就进入阻塞状态。<br>5.死亡状态(DEAD):程序执行完，或者遇到异常，退出的执行。</p>
+<hr>
+<p>###注:Java中的两种线程分类——用户线程和守护线程<br>守护线程其实就是一个给其他线程提供便利的线程。在JVM中只要有一个非守护线程没有结束，那么这个守护线程就不会结束。只有当JVM所有用户线程结束，守护线程就会结束。因此Daemon线程是为用户线程提供服务的线程，典型的守护线程就是GC(垃圾回收器)。</p>
+<hr>
+<p>##四、Java多线程的常用方法和实例<br>—currentThread()返回对当前正在执行的线程对象的引用<br>—yield()暂停当前正在执行的线程对象，并执行其他线程。<br>—public static void sleep(long millis)throws InterruptedException:在指定的毫秒数内让当前正在执行的线程休眠（暂停执行），此操作受到系统计时器和调度程序精度和准确性的影响。该线程不丢失任何监视器的所属权。<br>—start():使该线程开始执行；Java 虚拟机调用该线程的 run 方法。<br>结果是两个线程并发地运行；当前线程（从调用返回给 start 方法）和另一个线程（执行其 run 方法）。 多次启动一个线程是非法的。特别是当线程已经结束执行后，不能再重新启动。<br>—public final boolean isAlive()测试线程是否处于活动状态。如果线程已经启动且尚未终止，则为活动状态<br>—setPriority(int newPriority)更改线程的优先级<br>—join<br>public final void join(long millis)<br>                throws InterruptedException等待该线程终止的时间最长为 millis 毫秒<br>—isDaemon()测试该线程是否为守护线程。<br>—toString()返回该线程的字符串表示形式，包括线程名称、优先级和线程组。<br>—getId()返回该线程的标识符。线程 ID 是一个正的 long 数，在创建该线程时生成。线程 ID 是唯一的，并终生不变。线程终止时，该线程 ID 可以被重新使用。</p>
+<p>###wait()方法和jion方法有什么不同之处？<br>1.sleep休眠时没有释放锁，而wait()释放了同步代码块，使得其他线程可以去执行被锁的同步代码块里面的类或者方法。<br>2.wait属于object的成员方法，一旦一个线程对象调用了wait方法，就必须要使用notify和notifyAll()方法唤醒该线程。</p>
+<hr>
+<p>###实例<br>1.Thread 类中的start() 和 run() 方法有什么区别？<br>start()方法被用来启动新创建的线程，而且start()内部 调用了run()方法，这和直接调用run()方法的效果不一样。当你调用run()方法的时候，只会是在原来的线程中调用，没有新的线程启 动，start()方法才会启动新线程。<br>2.什么是线程安全？<br>代码所在的进程中有多个线程在同时运行，而这些线程可能会同时运行这段代码。如果每次运行结果和单线程运行的结果是一样的，而且其他的变量 的值也和预期的是一样的，就是线程安全的。<br>3.Java中如何停止一个线程？<br>Java提供了很丰富的API但没有为停止线程提供API。JDK 1.0本来有一些像stop(), suspend() 和 resume()的控制方法但是由于潜在的死锁威胁因此在后续的JDK版本中他们被弃用了，之后Java API的设计者就没有提供一个兼容且线程安全的方法来停止一个线程。当run() 或者 call() 方法执行完的时候线程会自动结束,如果要手动结束一个线程，你可以用volatile 布尔变量来退出run()方法的循环或者是取消任务来中断线程。<br>4.Java中notify 和 notifyAll有什么区别？<br>5.为什么wait, notify 和 notifyAll这些方法不在thread类里面？<br>一个很明显的原因是JAVA提供的锁是对象级的而不是线程级的，每个对象都有锁，通 过线程获得。如果线程需要等待某些锁那么调用对象中的wait()方法就有意义了。如果wait()方法定义在Thread类中，线程正在等待的是哪个锁 就不明显了。简单的说，由于wait，notify和notifyAll都是锁级别的操作，所以把他们定义在Object类中因为锁属于对象。<br>6.为什么wait和notify方法要在同步块中调用？<br>主要是因为Java API强制要求这样做，如果你不这么做，你的代码会抛出IllegalMonitorStateException异常。还有一个原因是为了避免wait和notify之间产生竞态条件。<br>7.Java中堆和栈有什么不同？<br>每个线程都有自己的栈内存，用于存储本地变量，方法参数和栈 调用，一个线程中存储的变量对其它线程是不可见的。而堆是所有线程共享的一片公用内存区域。对象都在堆里创建，为了提升效率线程会从堆中弄一个缓存到自己 的栈，如果多个线程使用该变量就可能引发问题，这时volatile 变量就可以发挥作用了，它要求线程从主存中读取变量的值。<br>8.什么是线程池？ 为什么要使用它？<br>创建线程要花费昂贵的资源和时间，如果任务来了才创建线程那么响应时间会变长，而且一个进程能创建的线程数有限。为了避免这些问题，在程序启动的时 候就创建若干线程来响应处理，它们被称为线程池，里面的线程叫工作线程。从JDK1.5开始，Java API提供了Executor框架让你可以创建不同的线程池。比如单线程池，每次处理一个任务；数目固定的线程池或者是缓存线程池（一个适合很多生存期短 的任务的程序的可扩展线程池）。<br>9.有三个线程T1，T2，T3，怎么确保它们按顺序执行？<br>在多线程中有多种方法让线程按特定顺序执行，你可以用线程类的join()方法在一个线程中启动另一个线程，另外一个线程完成该线程继续执行。为了确保三个线程的顺序你应该先启动最后一个(T3调用T2，T2调用T1)，这样T1就会先完成而T3最后完成。</p>
+<hr>
+<p>##五、线程的优先级<br>Java线程的优先级是根据1-10的数来描述的.<br>Thread.min_Priority:最小<br>Thread.max_Priority:最大<br>Thread.norm_Priority=5<br>对线程优先级操作的方法:<br> <code>void setPriority(int newpriority)</code>设置线程的优先级<br><code>int getPriority:</code>获取线程的优先级<br>注:线程的优先级是无法保证线程的执行顺序。只不过是获得时间片的概率更大一点。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年11月26日 19:38</p>
+        <p>原始链接： <a class="post-url" href="/2018/11/26/com_Fl_Threat/" title="">http://yoursite.com/2018/11/26/com_Fl_Threat/</a></p>
+        <footer>
+            <a href="http://yoursite.com">
+                <img src="/images/logo.png" alt="Feng Lei">
+                Feng Lei
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/26/com_Fl_Threat/&title=ant&pic=http://yoursite.comimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/26/com_Fl_Threat/&title=ant&source=MySQL|Ƕ��ʽ|Java|��Ʒ���|���ݽṹ|�㷨|�ܹ�" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/11/26/com_Fl_Threat/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=ant&url=http://yoursite.com/2018/11/26/com_Fl_Threat/&via=http://yoursite.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/11/26/com_Fl_Threat/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/11/26/com_Fl_Threat/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#java并发编程（一）基础篇"><span class="post-toc-text">#java并发编程（一）基础篇</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#五、Java中线程的优先级"><span class="post-toc-text">###五、Java中线程的优先级</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一个进程可以包含多个线程，每个线程在一个进程中共同协作完成一个任务，一个进程中如果一个线程都不包含我们可以认为这个进程是单线程，因此这就很容易理解为什么说进程是c计算机系统分配资源的基本单位，因为计算机在执行某一个任务的时候就会把一整块的资源分派给进程。然后由进程里面的众多的线程完成这个资源的调度和使用。因此说线程是cpu调度和处理的基本单位。这就会引发一个问题，在同一个进程中的线程就会因为共同使用一块的资源，就会发生争抢的情况。这时就要有足够优质的控制机制来进行控制程序中线程的处理。"><span class="post-toc-text">一个进程可以包含多个线程，每个线程在一个进程中共同协作完成一个任务，一个进程中如果一个线程都不包含我们可以认为这个进程是单线程，因此这就很容易理解为什么说进程是c计算机系统分配资源的基本单位，因为计算机在执行某一个任务的时候就会把一整块的资源分派给进程。然后由进程里面的众多的线程完成这个资源的调度和使用。因此说线程是cpu调度和处理的基本单位。这就会引发一个问题，在同一个进程中的线程就会因为共同使用一块的资源，就会发生争抢的情况。这时就要有足够优质的控制机制来进行控制程序中线程的处理。</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/14/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Hello World</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 Feng Lei<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://yoursite.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
